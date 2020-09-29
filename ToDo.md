@@ -33,6 +33,8 @@ scanner assigned and obtain one. If getting the key for the specific platform is
 For my specific API I had to make an account on the UrlScan.io website and create an API key, after that I installed the API via pip. Remember the process might be
 different for you so make sure you google about.
 
+If the scanner does not have an API key it might be following a request-json model, Make sure you read the documentation for each API well to understand how they work. 
+
 IMP:
 
 pip is an installer for python that helps you install various libraries. If you install anything at all via pip make sure you add the command to the setup.sh file. 
