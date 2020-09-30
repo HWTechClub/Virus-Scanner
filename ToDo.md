@@ -13,6 +13,7 @@ Web Scanning:
 Name - Role
 
 Pranav - URLScan.io API & Frontend Design
+Sanjana - URLScan.io API
 
 Omar - ThreatCrowd API 
 Sabah - ThreatCrowd API
