@@ -2,7 +2,7 @@ import requests
 
 url = "https://api.metadefender.com/v2/file/ZDE4MDUxMVNKTS00U0s5WFJNSDFRYlZTdGM3Uno"
 headers = {
-    'apikey': "a627fd093f3890c31b13d85b8955c644",
+    'apikey': "",
     'file-metadata': "1"
 }
 
