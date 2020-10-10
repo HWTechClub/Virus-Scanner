@@ -1,8 +1,11 @@
 import requests
+import sys
+sys.path.append("..")
+import config
 
 url = "https://api.metadefender.com/v2/file/ZDE4MDUxMVNKTS00U0s5WFJNSDFRYlZTdGM3Uno"
 headers = {
-    'apikey': "",
+    'apikey': config.Meta_Defender_API_Key,
     'file-metadata': "1"
 }
 
