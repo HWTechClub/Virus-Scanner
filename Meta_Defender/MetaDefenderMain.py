@@ -8,19 +8,10 @@ import hashlib
 import json
 import time
  
-#parser = argparse.ArgumentParser()
-#parser.add_argument("--verbosity", help="increase output verbosity")
-#args = parser.parse_args()
-#if args.verbosity:
-# print("verbosity turned on")
-file='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+parser = argparse.ArgumentParser()
+parser.add_argument("-file", help="Enter the file path")
+args = parser.parse_args()
 
-localFile = "/home/pc/Documents/TechClub/Virus-Scanner/Meta_Defender/googlelogo_color_272x92dp.png"
-# Replace this w value from argparse
-
-h = hashlib.md5()
-h.update(file.encode('utf-8'))
-print(h.hexdigest())
  
 urlUpload = "https://api.metadefender.com/v4/file"
 headers = {
@@ -28,7 +19,7 @@ headers = {
 	'content-type': 'application/octet-stream'
 }
  
-response = requests.request("POST", urlUpload, data=localFile, headers=headers)
+response = requests.request("POST", urlUpload, data=args.file, headers=headers)
 print(response.text)	# Upload Response
 
 resDict = json.loads(response.text)
