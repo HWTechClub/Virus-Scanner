@@ -3,38 +3,40 @@ import requests
 import sys
 sys.path.append("..")
 import config
-import argparse
 import hashlib
 import json
 import time
- 
-parser = argparse.ArgumentParser()
-parser.add_argument("-file", help="Enter the file path")
-args = parser.parse_args()
 
- 
-urlUpload = "https://api.metadefender.com/v4/file"
-headers = {
-	'apikey': config.Meta_Defender_API_Key,
-	'content-type': 'application/octet-stream'
-}
- 
-response = requests.request("POST", urlUpload, data=args.file, headers=headers)
-print(response.text)	# Upload Response
+def scanFile():
+	 
+	print("Enter the file path of the file you would like to scan:")
+	file = input()
 
-resDict = json.loads(response.text)
-dataID = resDict["data_id"]
+	 
+	urlUpload = "https://api.metadefender.com/v4/file"
+	headers = {
+		'apikey': config.Meta_Defender_API_Key,
+		'content-type': 'application/octet-stream'
+	}
+	 
+	response = requests.request("POST", urlUpload, data=file, headers=headers)
+	print(response.text)	# Upload Response
 
-print(dataID)		# Data ID of file
+	resDict = json.loads(response.text)
+	dataID = resDict["data_id"]
 
-time.sleep(5)
+	print(dataID)		# Data ID of file
 
-urlScan = "https://api.metadefender.com/v4/file/bzIwMTEwNGk5dTVaUHo4c0FQbmpvNGlrUi0"
+	time.sleep(5)
 
-headers = {
-	'apikey': config.Meta_Defender_API_Key
-}
+	urlScan = "https://api.metadefender.com/v4/file/bzIwMTEwNGk5dTVaUHo4c0FQbmpvNGlrUi0"
 
-response = requests.request("GET", urlScan, headers=headers)
-print(response.text)		# Scan Response
+	headers = {
+		'apikey': config.Meta_Defender_API_Key
+	}
 
+	response = requests.request("GET", urlScan, headers=headers)
+	print(response.text)		# Scan Response
+
+
+scanFile()
