@@ -1,4 +1,3 @@
-# Found some Proof of Concept code in the documentation and just added my api key to it and changed the target site
 import urllib.request as urlreq
 import requests
 import json
@@ -15,14 +14,14 @@ def scanURL():
 	headers = {'API-Key':config.URL_Scan_IO_API_Key,'Content-Type':'application/json'}
 	data = {"url": url, "visibility": "public"}
 	
-	response = requests.post('https://urlscan.io/api/v1/scan/',headers=headers, data=json.dumps(data))
+	response = requests.post('https://urlscan.io/api/v1/scan/',headers=headers, data=json.dumps(data))		# send req to server
 
-	start = str(response).find("[") + len("[")
+	start = str(response).find("[") + len("[")	
 	end = str(response).find("]")
-	respCode = str(response)[start:end]
+	respCode = str(response)[start:end]			# Get response code
 
 	if(respCode != "200"):
-		print("Error in URL, it may be blacklisted or entered incorrectly.")
+		print("Error in URL, it may be blacklisted or entered incorrectly.")		# if site returns error
 		exit()
 
 	try:
@@ -38,11 +37,11 @@ def scanURL():
 		print("IP: " + urlResp.json().get('page').get('ip'))
 		print("Server: " + urlResp.json().get('page').get('server'))
 		print("Ads Detected: " + str(urlResp.json().get('stats').get('adBlocked')))
-		print("Malicious: " + str(urlResp.json().get('verdicts').get('overall').get('malicious')))
+		print("Malicious: " + str(urlResp.json().get('verdicts').get('overall').get('malicious')))	# print info
 
 		print("\n\nFor more detailed results visit: " + resultUrl + "\n")
 
 	except:
-		print("Error something went wrong!")
-		
+		print("Error something went wrong!")		# incase error occurs during result retrieval
+
 scanURL()
