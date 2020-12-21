@@ -2,7 +2,7 @@ from urllib.parse import quote
 import requests
 import sys
 sys.path.append("..")
-import config
+from config import Meta_Defender_API_key
 import hashlib
 import json
 import time
@@ -15,7 +15,7 @@ def scanFile():
 	 
 	urlUpload = "https://api.metadefender.com/v4/file"
 	headers = {
-		'apikey': config.Meta_Defender_API_Key,
+		'apikey': Meta_Defender_API_key(),
 		'content-type': 'application/octet-stream'
 	}
 	 
