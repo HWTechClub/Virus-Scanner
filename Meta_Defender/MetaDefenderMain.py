@@ -32,7 +32,7 @@ def scanFile():
 	urlScan = "https://api.metadefender.com/v4/file/bzIwMTEwNGk5dTVaUHo4c0FQbmpvNGlrUi0"
 
 	headers = {
-		'apikey': config.Meta_Defender_API_Key
+		'apikey': Meta_Defender_API_key()
 	}
 
 	response = requests.request("GET", urlScan, headers=headers)
