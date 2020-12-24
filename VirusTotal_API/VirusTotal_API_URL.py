@@ -17,7 +17,7 @@ scanResp = requests.post(scanUrl, data=scanParams)						# scan request
 scanID = scanResp.json().get('scan_id')									# getting scan ID
 
 print("Processing URL...")			
-#time.sleep(10)															# allowing for processing time
+time.sleep(10)															# allowing for processing time
 
 reportParams = {"apikey":Virus_Total_API_key(), 'resource' : scanID}
 reportResp = requests.get(reportUrl, params=reportParams)				# getting report of scan ID
@@ -31,7 +31,7 @@ else:
     z = x["scans"]
     for obj in z:
         if (z[obj]["detected"] != False ):
-            print (obj + " has detected an error")
+            print (obj + " has detected an issue")
             print(z[obj])
 print("\n")
 print("To get more information on the scan,paste this link in your browser\n")
