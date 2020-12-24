@@ -31,7 +31,7 @@ else:
     z = x["scans"]
     for obj in z:
         if (z[obj]["detected"] != False ):
-            print (obj + " has detected an issue")
+            print (obj + " has detected that it may be a " + z[obj]["result"])
             print(z[obj])
 print("\n")
 print("To get more information on the scan,paste this link in your browser\n")
