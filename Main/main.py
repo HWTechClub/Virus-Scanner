@@ -2,7 +2,7 @@ from subprocess import call
 
 class CallPy(object):
 
-  def __init__(self,path="C:\\Users\\Sanjana\\OneDrive\\Documents\\GitHub\\Virus-Scanner\\URL_Scan_IO\\URLScanIOMain.py"):
+  def __init__(self,path=" "):
      self.path=path
 
   def call_python_file(self):
