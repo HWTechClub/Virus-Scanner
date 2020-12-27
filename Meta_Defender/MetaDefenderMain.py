@@ -25,7 +25,7 @@ def scanFile():
 	resDict = json.loads(response.text)
 	dataID = resDict["data_id"]
 
-	print(dataID)		# Data ID of file
+	#print(dataID)		# Data ID of file
 
 	time.sleep(5)
 
@@ -36,7 +36,20 @@ def scanFile():
 	}
 
 	response = requests.request("GET", urlScan, headers=headers)
-	print(response.text)		# Scan Response
+	# print(response.text)		# Scan Response
 
+	scanning_threats = response.json()["scan_results"]["scan_details"]
+	if (response.json()["scan_results"]["scan_all_result_a"]!= 'No Threat Detected'):
+		for obj in scanning_threats:
+			if(scanning_threats[obj]["threat_found"] != ""):
+				print(obj + "has reported an error.")
+				print(z[obj])
+	else:
+		print("No threat has been detected.")
 
 scanFile()
+
+
+
+
+
