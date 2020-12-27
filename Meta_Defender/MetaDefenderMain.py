@@ -43,7 +43,7 @@ def scanFile():
 		for obj in scanning_threats:
 			if(scanning_threats[obj]["threat_found"] != ""):
 				print(obj + "has reported an error.")
-				print(z[obj])
+				print(scanning_threats[obj])
 	else:
 		print("No threat has been detected.")
 
