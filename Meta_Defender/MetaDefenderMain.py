@@ -20,7 +20,7 @@ def scanFile():
 	}
 	 
 	response = requests.request("POST", urlUpload, data=file, headers=headers)
-	print(response.text)	# Upload Response
+	#print(response.text)	# Upload Response
 
 	resDict = json.loads(response.text)
 	dataID = resDict["data_id"]
