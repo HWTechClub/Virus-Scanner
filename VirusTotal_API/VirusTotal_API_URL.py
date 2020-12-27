@@ -22,17 +22,17 @@ time.sleep(10)															# allowing for processing time
 reportParams = {"apikey":Virus_Total_API_key(), 'resource' : scanID}
 reportResp = requests.get(reportUrl, params=reportParams)				# getting report of scan ID
 
-x = reportResp.json()
-print("Your scan ID is " + x["scan_id"] + "\n") 
-if (x["positives"] == 0):
+report_json = reportResp.json()
+print("Your scan ID is " + report_json["scan_id"] + "\n") 
+if (report_json["positives"] == 0):
     print("This site is 100% safe\n")	
 else:
     print("Our scans picked up some issues with this site. Proceed with caution.More info:")
-    z = x["scans"]
-    for obj in z:
-        if (z[obj]["detected"] != False ):
-            print (obj + " has detected that it may be a " + z[obj]["result"])
-            print(z[obj])
+    scan_report = report_json["scans"]
+    for scanner in scan_report:
+        if (scan_report[scanner]["detected"] != False ):
+            print (scanner + " has detected that it may be a " + scan_report[scanner]["result"])
+            print(scan_report[scanner])
 print("\n")
 print("To get more information on the scan,paste this link in your browser\n")
-print(x["permalink"])
+print(report_json["permalink"])
