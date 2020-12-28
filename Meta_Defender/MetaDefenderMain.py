@@ -11,7 +11,7 @@ def scanFile():
 	 
 	print("Enter the file path of the file you would like to scan:")
 	file = input()
-
+	binFile = open(file, 'rb')
 	 
 	urlUpload = "https://api.metadefender.com/v4/file"
 	headers = {
@@ -19,7 +19,7 @@ def scanFile():
 		'content-type': 'application/octet-stream'
 	}
 	 
-	response = requests.request("POST", urlUpload, data=file, headers=headers)
+	response = requests.request("POST", urlUpload, data= binFile, headers=headers)
 	#print(response.text)	# Upload Response
 
 	resDict = json.loads(response.text)
@@ -27,16 +27,16 @@ def scanFile():
 
 	#print(dataID)		# Data ID of file
 
-	time.sleep(5)
+	time.sleep(30)
 
-	urlScan = "https://api.metadefender.com/v4/file/bzIwMTEwNGk5dTVaUHo4c0FQbmpvNGlrUi0"
+	urlScan = "https://api.metadefender.com/v4/file/" + dataID
+	print(urlScan)
 
 	headers = {
 		'apikey': Meta_Defender_API_key()
 	}
 
 	response = requests.request("GET", urlScan, headers=headers)
-	# print(response.text)		# Scan Response
 
 	scanning_threats = response.json()["scan_results"]["scan_details"]
 	if (response.json()["scan_results"]["scan_all_result_a"]!= 'No Threat Detected'):
