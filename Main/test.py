@@ -21,25 +21,16 @@ if choice==1 :
 elif choice==2 :
     from URL_Scan_IO.URLScanIOMain import scanURL
     scanURL()
-# elif choice == 3 or choice == 4:
-#     class CallPy(object):
 
-#     # choice = int(input("Enter your choice 3 or 4: "))
-#         if choice == 3:
-#             def __init__(self,path='..\VirusTotal_API\VirusTotal_API_File.py'): #../ added to go to parent directory
-#                self.path=path
-#         elif choice ==4:
-#             def __init__(self,path='..\VirusTotal_API\VirusTotal_API_URL.py'): #../ added to go to parent directory
-#                self.path=path
+elif choice==3:
+    from VirusTotal_API.VirusTotal_API_File import ScanFile
+    ScanFile()
+elif choice==4:
+    from VirusTotal_API.VirusTotal_API_URL import scanURL
+    scanURL()
+            
      
-#         def call_python_file(self):
-#             call(["python3","{}".format(self.path)])
-	
-#     if __name__=="__main__":
-#         c=CallPy()
-# 	    c.call_python_file()
-
-
+        
 
 
 
