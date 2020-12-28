@@ -4,43 +4,46 @@ import time
 sys.path.append("..")
 from config import Virus_Total_API_key
 
-# scan code
-print("Enter the file path of the file you would like to scan:")
-file = input()
+def ScanFile():
+	# scan code
+	print("Enter the file path of the file you would like to scan:")
+	file = input()
 
 
-scanUrl = 'https://www.virustotal.com/vtapi/v2/file/scan'
+	scanUrl = 'https://www.virustotal.com/vtapi/v2/file/scan'
 
-scanParams = {'apikey': Virus_Total_API_key()}
+	scanParams = {'apikey': Virus_Total_API_key()}	
 
-files = {'file': (file, open(file, 'rb'))}							# file to be sent
-scanResp = requests.post(scanUrl, files=files, params=scanParams)	# send file along w api key
+	files = {'file': (file, open(file, 'rb'))}							# file to be sent
+	scanResp = requests.post(scanUrl, files=files, params=scanParams)	# send file along w api key
 
-scanID = scanResp.json().get('scan_id')
+	scanID = scanResp.json().get('scan_id')
 
-print("\nProcessing File...")
-time.sleep(30)					# allow for processing time	
+	print("\nProcessing File...")
+	time.sleep(30)					# allow for processing time	
 
-# report code
+	# report code
 
-reportUrl = 'https://www.virustotal.com/vtapi/v2/file/report'
+	reportUrl = 'https://www.virustotal.com/vtapi/v2/file/report'
 
-reportParams = {'apikey': Virus_Total_API_key(), 'resource': scanID}		# use scanID to get file report
-reportResp = requests.get(reportUrl, params=reportParams)
+	reportParams = {'apikey': Virus_Total_API_key(), 'resource': scanID}		# use scanID to get file report
+	reportResp = requests.get(reportUrl, params=reportParams)
 
-finalReport = reportResp.json()
-finalScans = finalReport.get('scans')		# get scans from report
-	
-if (finalReport.get('positives') == 0):		# check if file has been flagged
-	print("The file is safe!\n")
+	finalReport = reportResp.json()
+	finalScans = finalReport['scans']		# get scans from report
 
-else:
-	for scan in finalScans:			# for each scan
+	if (finalReport.get('positives') == 0):		# check if file has been flagged
+		print("The file is safe!\n")
 
-		if (finalScans[scan].get('detected') == True):		# check if antivirus flagged file
+	else:
+		for scan in finalScans:			# for each scan
 
-			print(scan + " has flagged this as malicious!")
-			print(finalScans[scan].get('result'))
-			print("\n\n")
+			if (finalScans[scan].get('detected') == True):		# check if antivirus flagged file
 
-print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
+				print(scan + " has flagged this as malicious!")	
+				print(finalScans[scan].get('result'))
+				print("\n\n")
+
+	print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
+
+ScanFile()
