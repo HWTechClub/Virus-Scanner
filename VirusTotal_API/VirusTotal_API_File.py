@@ -46,4 +46,3 @@ def ScanFile():
 
 	print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
 
-ScanFile()

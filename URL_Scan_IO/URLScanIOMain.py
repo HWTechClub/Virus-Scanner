@@ -44,5 +44,3 @@ def scanURL():
 
 	except:
 		print("Error something went wrong!")		# incase error occurs during result retrieval
-
-scanURL()

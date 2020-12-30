@@ -38,4 +38,3 @@ def scanURL():
     print("To get more information on the scan,paste this link in your browser\n")
     print(x["permalink"])
 
-scanURL()
