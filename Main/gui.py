@@ -1,15 +1,27 @@
+import sys
+import os
+
+PACKAGE_PARENT = '..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
 #importing tkinter from library 
 from tkinter import *
 
 #defining all the functions
 def meta():
-    pass
+    from Meta_Defender.MetaDefenderMain import scanFile
+    scanFile()
 def url():
-    pass
+    from URL_Scan_IO.URLScanIOMain import scanURL
+    scanURL()
 def vtFile():
-    pass
+    from VirusTotal_API.VirusTotal_API_File import ScanFile
+    ScanFile()
 def vtUrl():
-    pass
+    from VirusTotal_API.VirusTotal_API_URL import scanURL
+    scanURL()
+
 #make the gui
 window=Tk()
 window.title("VIRUS SCANNER")
