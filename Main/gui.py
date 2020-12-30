@@ -28,7 +28,7 @@ window.title("VIRUS SCANNER")
 window.geometry("600x600")
 
 #Adding a label 
-Label(window, text="Options",font=16).grid(row=0,column=0,sticky=W)
+Label(window, text="Choose the option u would like",font=16).grid(row=0,column=0,sticky=W)
 
 #Add a button
 Button(window,text="1.Meta Defender",width=16, command=meta).grid(row=1,column=0,sticky=W)
