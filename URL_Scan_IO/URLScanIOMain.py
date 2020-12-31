@@ -10,11 +10,11 @@ import time
 '''
 Parameters (<url to scan>,<virus total api key>)
 '''
-def scanURL(urlPath, URL_Scan_IO_API_key):
+def scanURL(urlLink, URL_Scan_IO_API_key):
 	
 	# Send req w url to scan along w API key
 	headers = {'API-Key':URL_Scan_IO_API_key,'Content-Type':'application/json'}
-	data = {"url": urlPath, "visibility": "public"}
+	data = {"url": urlLink, "visibility": "public"}
 	
 	response = requests.post('https://urlscan.io/api/v1/scan/',headers=headers, data=json.dumps(data))		# send req to server
 

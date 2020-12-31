@@ -9,17 +9,17 @@ import time
 '''
 Parameters (<file to scan>,<virus total api key>)
 '''
-def ScanFile(filepath, Virus_Total_API_key):
+def scanFile(filePath, Virus_Total_API_key):
 
 	scanUrl = 'https://www.virustotal.com/vtapi/v2/file/scan'
 	scanParams = {'apikey': Virus_Total_API_key}	
 
-	files = {'file': (file, open(filepath, 'rb'))}							# file to be sent
+	files = {'file': (filePath, open(filePath, 'rb'))}							# file to be sent
 	scanResp = requests.post(scanUrl, files=files, params=scanParams)	# send file along w api key
 
 	scanID = scanResp.json().get('scan_id')
 
-	print("\nProcessing File...")
+	print("\nPlease give us a moment to process your file, this may take upto 60 seconds")
 	time.sleep(60)					# allow for processing time	
 
 	# report code
