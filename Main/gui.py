@@ -36,3 +36,5 @@ Button(window,text="2.Url scan",width=16, command=url).grid(row=2,column=0,stick
 Button(window,text="3.virus total file",width=16, command=vtFile).grid(row=3,column=0,sticky=W)
 Button(window,text="4.virus total url",width=16, command=vtUrl).grid(row=4,column=0,sticky=W)
 window.mainloop()
+
+window.print("tset")

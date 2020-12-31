@@ -20,7 +20,7 @@ def ScanFile():
 	scanID = scanResp.json().get('scan_id')
 
 	print("\nProcessing File...")
-	time.sleep(30)					# allow for processing time	
+	time.sleep(60)					# allow for processing time	
 
 	# report code
 
