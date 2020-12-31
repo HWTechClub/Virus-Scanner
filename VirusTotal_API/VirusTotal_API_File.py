@@ -1,18 +1,26 @@
+'''
+TODO: 
+Add description of code here
+'''
+
 import requests
 import sys
 import time
-sys.path.append("..")
-from config import Virus_Total_API_key
+#sys.path.append("..")
+#from config import Virus_Total_API_key
 
-def ScanFile():
+'''
+Parameters (<file to scan>,<virus total api key>)
+'''
+def ScanFile(filepath, Virus_Total_API_key):
 	# scan code
-	print("Enter the file path of the file you would like to scan:")
-	file = input()
+	#print("Enter the file path of the file you would like to scan:")
+	file = filepath
 
 
 	scanUrl = 'https://www.virustotal.com/vtapi/v2/file/scan'
 
-	scanParams = {'apikey': Virus_Total_API_key()}	
+	scanParams = {'apikey': Virus_Total_API_key}	
 
 	files = {'file': (file, open(file, 'rb'))}							# file to be sent
 	scanResp = requests.post(scanUrl, files=files, params=scanParams)	# send file along w api key
@@ -26,7 +34,7 @@ def ScanFile():
 
 	reportUrl = 'https://www.virustotal.com/vtapi/v2/file/report'
 
-	reportParams = {'apikey': Virus_Total_API_key(), 'resource': scanID}		# use scanID to get file report
+	reportParams = {'apikey': Virus_Total_API_key, 'resource': scanID}		# use scanID to get file report
 	reportResp = requests.get(reportUrl, params=reportParams)
 
 	finalReport = reportResp.json()
@@ -46,4 +54,3 @@ def ScanFile():
 
 	print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
 
-ScanFile()

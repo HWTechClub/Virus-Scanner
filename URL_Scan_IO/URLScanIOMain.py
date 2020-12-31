@@ -1,3 +1,8 @@
+'''
+TODO: 
+Add description of code here
+'''
+
 import urllib.request as urlreq
 import requests
 import json
@@ -44,5 +49,3 @@ def scanURL():
 
 	except:
 		print("Error something went wrong!")		# incase error occurs during result retrieval
-
-scanURL()

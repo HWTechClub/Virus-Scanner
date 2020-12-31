@@ -1,3 +1,8 @@
+'''
+TODO: 
+Add description of code here
+'''
+
 from urllib.parse import quote
 import requests
 import sys
@@ -21,7 +26,8 @@ def scanFile():
 	 
 	response = requests.request("POST", urlUpload, data= binFile, headers=headers)
 	#print(response.text)	# Upload Response
-
+	
+	print ("\nPlease wait while your file is being scanned. This may take upto 60 seconds")
 	resDict = json.loads(response.text)
 	dataID = resDict["data_id"]
 
@@ -47,7 +53,7 @@ def scanFile():
 	else:
 		print("No threat has been detected.")
 
-scanFile()
+
 
 
 
