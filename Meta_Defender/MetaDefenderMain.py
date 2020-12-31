@@ -3,24 +3,20 @@ TODO:
 Add description of code here
 '''
 
-from urllib.parse import quote
 import requests
-import sys
-sys.path.append("..")
-from config import Meta_Defender_API_key
-import hashlib
 import json
 import time
 
-def scanFile():
+'''
+Parameters (<file to scan>,<virus total api key>)
+'''
+def scanFile(filePath,Meta_Defender_API_key):
 	 
-	print("Enter the file path of the file you would like to scan:")
-	file = input()
-	binFile = open(file, 'rb')
+	binFile = open(filePath, 'rb')
 	 
 	urlUpload = "https://api.metadefender.com/v4/file"
 	headers = {
-		'apikey': Meta_Defender_API_key(),
+		'apikey': Meta_Defender_API_key,
 		'content-type': 'application/octet-stream'
 	}
 	 

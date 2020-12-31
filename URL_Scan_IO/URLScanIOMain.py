@@ -3,22 +3,18 @@ TODO:
 Add description of code here
 '''
 
-import urllib.request as urlreq
 import requests
 import json
-import sys
-sys.path.append("..") 		# Get access to config file with API keys
-from config import URL_Scan_IO_API_key
 import time
 
-def scanURL():
+'''
+Parameters (<url to scan>,<virus total api key>)
+'''
+def scanURL(urlPath, URL_Scan_IO_API_key):
 	
-	print("Enter the URL you would like to scan:")
-	url = input()
-
 	# Send req w url to scan along w API key
-	headers = {'API-Key':URL_Scan_IO_API_key(),'Content-Type':'application/json'}
-	data = {"url": url, "visibility": "public"}
+	headers = {'API-Key':URL_Scan_IO_API_key,'Content-Type':'application/json'}
+	data = {"url": urlPath, "visibility": "public"}
 	
 	response = requests.post('https://urlscan.io/api/v1/scan/',headers=headers, data=json.dumps(data))		# send req to server
 
