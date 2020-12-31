@@ -26,22 +26,32 @@ def scanURL(urlLink, URL_Scan_IO_API_key):
 		print("Error in URL, it may be blacklisted or entered incorrectly.")		# if site returns error
 		exit()
 
-	try:
 
-		print("Processing request... (May take upto 20 seconds)\n")
+	print("\nProcessing request... ")
+	respCode = 0
+	status = True
 
-		time.sleep(20)						# Allow time for scanning
+	while status == True:
 		
-		resultUrl = response.json().get("api")		# Get result url
+		if(respCode != "200"):
 
-		urlResp = requests.get(resultUrl)	# Get JSON data from result link
-		print("URL: " + url)
-		print("IP: " + urlResp.json().get('page').get('ip'))
-		print("Server: " + urlResp.json().get('page').get('server'))
-		print("Ads Detected: " + str(urlResp.json().get('stats').get('adBlocked')))
-		print("Malicious: " + str(urlResp.json().get('verdicts').get('overall').get('malicious')))	# print info
+			resultUrl = response.json().get("api")		# Get result url
+			urlResp = requests.get(resultUrl)	# Get JSON data from result link
+			
+			respCode = str(urlResp)[start:end]
+			print(respCode)
+			time.sleep(3)
 
-		print("\n\nFor more detailed results visit: " + resultUrl + "\n")
+		else:
+			
+			urlResp = requests.get(resultUrl)	# Get JSON data from result link
 
-	except:
-		print("Error something went wrong!")		# incase error occurs during result retrieval
+			print("URL: " + urlLink)
+			print("IP: " + urlResp.json().get('page').get('ip'))
+			print("Server: " + urlResp.json().get('page').get('server'))
+			print("Ads Detected: " + str(urlResp.json().get('stats').get('adBlocked')))
+			print("Malicious: " + str(urlResp.json().get('verdicts').get('overall').get('malicious')))	# print info
+
+			print("\n\nFor more detailed results visit: " + resultUrl + "\n")
+			status = False
+
