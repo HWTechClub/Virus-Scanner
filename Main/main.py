@@ -70,7 +70,7 @@ while flag:
         from config import Virus_Total_API_key
 
         filePath = getInput("file")
-        ScanFile(filePath, Virus_Total_API_key())
+        scanFile(filePath, Virus_Total_API_key())
         continue
 
     elif choice==4:

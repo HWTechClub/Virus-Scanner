@@ -31,7 +31,7 @@ def scanURL(urlLink, URL_Scan_IO_API_key):
 	respCode = 0
 	status = True
 
-	while status == True:
+	while status:
 		
 		if(respCode != "200"):
 
@@ -39,7 +39,6 @@ def scanURL(urlLink, URL_Scan_IO_API_key):
 			urlResp = requests.get(resultUrl)	# Get JSON data from result link
 			
 			respCode = str(urlResp)[start:end]
-			print(respCode)
 			time.sleep(3)
 
 		else:

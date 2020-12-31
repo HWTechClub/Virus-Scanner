@@ -19,8 +19,8 @@ def scanFile(filePath, Virus_Total_API_key):
 
 	scanID = scanResp.json().get('scan_id')
 
-	print("\nPlease give us a moment to process your file, this may take upto 60 seconds")
-	time.sleep(60)					# allow for processing time	
+	print("\nPlease give us a moment to process your file, this may take upto 60 seconds\n")
+	#time.sleep(60)					# allow for processing time	
 
 	# report code
 
@@ -28,21 +28,30 @@ def scanFile(filePath, Virus_Total_API_key):
 
 	reportParams = {'apikey': Virus_Total_API_key, 'resource': scanID}		# use scanID to get file report
 	reportResp = requests.get(reportUrl, params=reportParams)
+	status = True
 
-	finalReport = reportResp.json()
-	finalScans = finalReport['scans']		# get scans from report
+	while status:
 
-	if (finalReport.get('positives') == 0):		# check if file has been flagged
-		print("The file is safe!\n")
+		if (reportResp.json().get("response_code") == -2):
+			reportResp = requests.get(reportUrl, params=reportParams)
+			time.sleep(3)
 
-	else:
-		for scan in finalScans:			# for each scan
+		else:			
+			finalReport = reportResp.json()
+			finalScans = finalReport['scans']		# get scans from report
 
-			if (finalScans[scan].get('detected') == True):		# check if antivirus flagged file
+			if (finalReport.get('positives') == 0):		# check if file has been flagged
+				print("The file is safe!\n")
 
-				print(scan + " has flagged this as malicious!")	
-				print(finalScans[scan].get('result'))
-				print("\n\n")
+			else:
+				for scan in finalScans:			# for each scan
 
-	print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
+					if (finalScans[scan].get('detected') == True):		# check if antivirus flagged file
+
+						print(scan + " has flagged this as malicious!")	
+						print(finalScans[scan].get('result'))
+						print("\n\n")
+
+			print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
+			status =  False
 
