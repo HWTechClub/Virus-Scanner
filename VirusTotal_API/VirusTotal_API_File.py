@@ -28,6 +28,7 @@ def scanFile(filePath, Virus_Total_API_key):
 
 	reportParams = {'apikey': Virus_Total_API_key, 'resource': scanID}		# use scanID to get file report
 	reportResp = requests.get(reportUrl, params=reportParams)
+
 	status = True
 
 	while status:

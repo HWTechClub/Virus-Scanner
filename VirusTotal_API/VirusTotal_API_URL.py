@@ -21,7 +21,6 @@ def scanURL(urlLink, Virus_Total_API_key):
     scanID = scanResp.json().get('scan_id')									# getting scan ID
 
     print("\nProcessing URL...")			
-    time.sleep(10)															# allowing for processing time
 
     reportParams = {"apikey":Virus_Total_API_key, 'resource' : scanID}
     reportResp = requests.get(reportUrl, params=reportParams)				# getting report of scan ID
