@@ -3,87 +3,52 @@ TODO:
 The main file that the user runs to scan files and sites for viruses
 '''
 
-import sys
-import os
+def mainfile():
+    import sys
+    import os
 
-PACKAGE_PARENT = '..'
-SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
-sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+    PACKAGE_PARENT = '..'
+    SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+    sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-#variable to help terminate the program
-flag = True
-	
+    #variable to help terminate the program
+    flag = True
 
-# Function gets URL or File path from user based off of option they select
-def getInput(inputType):			
-	
-	if(inputType == "file"):
+    from pyfiglet import Figlet
+    f = Figlet(font='slant')
+    print (f.renderText('Virus Scanner'))
 
-		print("Enter the path of the file you would like to scan: ")
-		filePath = input()
-
-		return filePath
-	
-	elif (inputType == "url"):
-
-		print("Enter the URL you would like to scan: ")
-		urlLink = input()
-
-		return urlLink
+    while flag:
+        #Option menu for the users
+        print (
+            "\n1.Meta defender" +"\n" +"2.Url scan "+"\n"+"3.virus total file"+"\n"+"4.virus total url"+"\n"+"5.Quit"
+        )
 
 
-from pyfiglet import Figlet
-f = Figlet(font='slant')
-print (f.renderText('Virus Scanner'))
+        choice =int(input("\nEnter the choice: "))
 
-while flag:
-    #Option menu for the users
-    print (
-        "\n1. Meta defender File Scan" +"\n" +"2. Url Scan IO"+"\n"+
-        "3. Virus Total File Scan"+"\n"+"4. Virus Total Url Scan"+"\n"+"5. Quit"
-    )
+        if choice==1 :
+            from Meta_Defender.MetaDefenderMain import scanFile
+            scanFile()
+            continue
+        
+        elif choice==2 :
+            from URL_Scan_IO.URLScanIOMain import scanURL
+            scanURL()
+            continue
 
+        elif choice==3:
+            from VirusTotal_API.VirusTotal_API_File import ScanFile
+            ScanFile()
+            continue
 
-    choice =int(input("\nEnter the choice: "))
+        elif choice==4:
+            from VirusTotal_API.VirusTotal_API_URL import scanURL
+            scanURL()
+            continue
 
-    if choice==1 :
-
-        from Meta_Defender.MetaDefenderMain import scanFile
-        from config import Meta_Defender_API_key
-
-        filePath = getInput("file")
-        scanFile(filePath, Meta_Defender_API_key())
-        continue
+        elif choice==5:
+            print("Quitting!")
+            flag = False
     
-    elif choice==2 :
 
-        from URL_Scan_IO.URLScanIOMain import scanURL
-        from config import URL_Scan_IO_API_key
-
-        urlLink = getInput("url")
-        scanURL(urlLink, URL_Scan_IO_API_key())
-        continue
-
-    elif choice==3:
-
-        from VirusTotal_API.VirusTotal_API_File import scanFile
-        from config import Virus_Total_API_key
-
-        filePath = getInput("file")
-        scanFile(filePath, Virus_Total_API_key())
-        continue
-
-    elif choice==4:
-
-        from VirusTotal_API.VirusTotal_API_URL import scanURL
-        from config import Virus_Total_API_key
-
-        urlLink = getInput("url")
-        scanURL(urlLink, Virus_Total_API_key())
-        continue
-
-    elif choice==5:
-
-        print("Quitting!")
-        flag = False
- 
