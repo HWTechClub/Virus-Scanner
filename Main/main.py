@@ -1,6 +1,6 @@
 '''
 TODO: 
-Add description of code here
+The main file that the user runs to scan files and sites for viruses
 '''
 
 import sys

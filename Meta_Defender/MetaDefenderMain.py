@@ -1,6 +1,6 @@
 '''
 TODO: 
-Add description of code here
+This program uses the MetaDegfender API to scan viruses.
 '''
 
 import requests

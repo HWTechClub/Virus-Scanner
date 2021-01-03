@@ -1,6 +1,6 @@
 '''
 TODO: 
-Add description of code here
+This program uses the VirusTotal API to scan files for any viruses.
 '''
 
 import requests

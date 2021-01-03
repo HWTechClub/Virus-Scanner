@@ -1,6 +1,6 @@
 '''
 TODO: 
-Add description of code here
+This program uses the VirusTotal API to scan files for any viruses. 
 '''
 
 import requests
@@ -20,7 +20,6 @@ def scanFile(filePath, Virus_Total_API_key):
 	scanID = scanResp.json().get('scan_id')
 
 	print("\nPlease give us a moment to process your file, this may take upto 60 seconds\n")
-	#time.sleep(60)					# allow for processing time	
 
 	# report code
 
