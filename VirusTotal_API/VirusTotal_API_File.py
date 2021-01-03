@@ -38,7 +38,7 @@ def ScanFile(filepath, Virus_Total_API_key):
 	reportResp = requests.get(reportUrl, params=reportParams)
 
 	finalReport = reportResp.json()
-	finalScans = finalReport['scans']		# get scans from report
+	finalScans = finalReport["scans"]		# get scans from report
 
 	if (finalReport.get('positives') == 0):		# check if file has been flagged
 		print("The file is safe!\n")
@@ -51,6 +51,7 @@ def ScanFile(filepath, Virus_Total_API_key):
 				print(scan + " has flagged this as malicious!")	
 				print(finalScans[scan].get('result'))
 				print("\n\n")
+
 
 	print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
 
