@@ -61,5 +61,8 @@ def mainfile():
         elif choice==5:
             print("Quitting!")
             flag = False
-    
+        else:
+            print("Invalid option")
+
+mainfile()    
 
