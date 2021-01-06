@@ -16,6 +16,4 @@ Virus_Total_API_key: <api_key>
 ```
 
 ## TODO 
-1. Ensure external libraries are added to requirements.txt
-2. Change code in folders from scanner to parameters in the function
-3. Create CLI (Command Line interface)
+1. Check if website exists when scanning URLs
