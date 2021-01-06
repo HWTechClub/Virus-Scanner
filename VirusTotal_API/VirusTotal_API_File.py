@@ -9,7 +9,7 @@ import time
 '''
 Parameters (<file to scan>,<virus total api key>)
 '''
-def scanFile(filePath, Virus_Total_API_key):
+def ScanFile(filePath, Virus_Total_API_key):
 
 	scanUrl = 'https://www.virustotal.com/vtapi/v2/file/scan'
 	scanParams = {'apikey': Virus_Total_API_key}	
@@ -57,7 +57,6 @@ def scanFile(filePath, Virus_Total_API_key):
 						print("\n\n")
 
 
-			print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
 			status =  False
 
 

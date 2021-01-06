@@ -63,6 +63,5 @@ def mainfile():
             flag = False
         else:
             print("Invalid option")
-
-mainfile()    
+    
 

@@ -10,7 +10,7 @@ import json
 '''
 Parameters (<url to scan>,<virus total api key>)
 '''
-def scanURL(urlLink, Virus_Total_API_key):
+def ScanURL(urlLink, Virus_Total_API_key):
 
     scanUrl = 'https://www.virustotal.com/vtapi/v2/url/scan'				# url to request scan from
     reportUrl = 'https://www.virustotal.com/vtapi/v2/url/report'			# url to request report from
