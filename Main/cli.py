@@ -12,7 +12,9 @@ import click
 # Importing file from different folders 
 import sys
 from main import *
+import os
 from os import path
+import platform
 # Config file 
 sys.path.append('../')
 #checks if user has created a config file. If no config is present, it prompts the user for the API keys
@@ -47,9 +49,10 @@ def main():
 @click.option('--VirusTotalURL', '-VTU', help = 'Scan a website using the VirusTotal API')
 @click.option('--MetaDefender', '-M', help= 'Scan a file using the MetaDefender API' )
 @click.option('-i', is_flag=True, help= 'Opens in interactive command line mode')
-def main(virustotalfile,virustotalurl,metadefender,i):
+@click.option('-e', is_flag=True, help= 'Opens a text editor to change API keys')
+def main(virustotalfile,virustotalurl,metadefender,i,e):
     """This is a CLI application to scan a file or a website using multiple scanners to check for any form of malware"""
-    if virustotalfile: 
+    if virustotalfile:                                         
        '''
        Parameters (<file to scan>,<virus total api key>)
        '''
@@ -66,6 +69,11 @@ def main(virustotalfile,virustotalurl,metadefender,i):
     
     elif i:
         m.mainfile()
+    elif e:
+        if platform.system()  == 'Windows':
+            os.system("notepad ../config.yaml")
+        else:
+            os.system("nano ../config.yaml")
     else:                                                                                          #shows help options if no options are input
         ctx = click.get_current_context()
         click.echo(ctx.get_help())
