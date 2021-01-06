@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''
 CLI (Command line interface for the virus scanner)
 Parameters:
