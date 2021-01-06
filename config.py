@@ -25,9 +25,3 @@ def Virus_Total_API_key():
     data = read_config()
     return data["Virus_Total_API_key"]
 
-# ----------------------------------------------------------------------------------------------------------------------------------------------
-# ------------------------------------------------------ Returns URL Scan IO API Key -----------------------------------------------------------
-
-def URL_Scan_IO_API_key():
-    data = read_config()
-    return data["URL_Scan_IO_API_key"]

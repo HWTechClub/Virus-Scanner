@@ -15,10 +15,8 @@ def mainfile():
         f = open("../config.yaml","w+")
         metakey = input("Enter API key for MetaDefender: ")
         virusscankey = input ("Enter API key for VirusTotal: ")
-        urlscankey = input("Enter API key for URL Scan: ")
         f.write("Meta_Defender_API_key: " + metakey + "\n")
         f.write("Virus_Total_API_key:" + virusscankey + "\n")
-        f.write("URL_Scan_IO_API_key: " + urlscankey + "\n")
         f.close()
     #variable to help terminate the program
     flag = True
@@ -32,7 +30,7 @@ def mainfile():
         #Option menu for the users
       
         print (
-            "\n1.Meta defender" +"\n" +"2.Url scan "+"\n"+"3.virus total file"+"\n"+"4.virus total url"+"\n"+"5.Quit"
+            "\n1.Meta defender" +"\n"+"2.virus total file"+"\n"+"3.virus total url"+"\n"+"4.Quit"
         )
 
 
@@ -44,21 +42,16 @@ def mainfile():
             continue
         
         elif choice==2 :
-            from URL_Scan_IO.URLScanIOMain import scanURL
-            scanURL()
-            continue
-
-        elif choice==3:
-            from VirusTotal_API.VirusTotal_API_File import ScanFile
+           	from VirusTotal_API.VirusTotal_API_File import ScanFile
             ScanFile()
             continue
 
-        elif choice==4:
+        elif choice==3:
             from VirusTotal_API.VirusTotal_API_URL import scanURL
             scanURL()
             continue
 
-        elif choice==5:
+        elif choice==4:
             print("Quitting!")
             flag = False
         else:

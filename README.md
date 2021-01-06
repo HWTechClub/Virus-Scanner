@@ -13,7 +13,6 @@ Create a file called config.yaml and add the following information
 ```
 Meta_Defender_API_key: <api_key>
 Virus_Total_API_key: <api_key>
-URL_Scan_IO_API_key: <api_key>
 ```
 
 ## TODO 

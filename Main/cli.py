@@ -21,10 +21,8 @@ if (path.isfile("../config.yaml")!= True):
     f = open("../config.yaml","w+")
     metakey = input("Enter API key for MetaDefender: ")
     virusscankey = input ("Enter API key for VirusTotal: ")
-    urlscankey = input("Enter API key for URL Scan: ")
     f.write("Meta_Defender_API_key: " + metakey + "\n")
     f.write("Virus_Total_API_key:" + virusscankey + "\n")
-    f.write("URL_Scan_IO_API_key: " + urlscankey + "\n")
     f.close()
  
 from config import *
