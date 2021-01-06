@@ -1,5 +1,4 @@
 '''
-TODO: 
 The main file that the user runs to scan files and sites for viruses
 '''
 
@@ -11,6 +10,16 @@ def mainfile():
     SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
     sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
+    if (os.path.isfile("../config.yaml")!= True):
+        print("No config file")
+        f = open("../config.yaml","w+")
+        metakey = input("Enter API key for MetaDefender: ")
+        virusscankey = input ("Enter API key for VirusTotal: ")
+        urlscankey = input("Enter API key for URL Scan: ")
+        f.write("Meta_Defender_API_key: " + metakey + "\n")
+        f.write("Virus_Total_API_key:" + virusscankey + "\n")
+        f.write("URL_Scan_IO_API_key: " + urlscankey + "\n")
+        f.close()
     #variable to help terminate the program
     flag = True
 
@@ -18,8 +27,10 @@ def mainfile():
     f = Figlet(font='slant')
     print (f.renderText('Virus Scanner'))
 
+
     while flag:
         #Option menu for the users
+      
         print (
             "\n1.Meta defender" +"\n" +"2.Url scan "+"\n"+"3.virus total file"+"\n"+"4.virus total url"+"\n"+"5.Quit"
         )
@@ -50,5 +61,8 @@ def mainfile():
         elif choice==5:
             print("Quitting!")
             flag = False
-    
+        else:
+            print("Invalid option")
+
+mainfile()    
 

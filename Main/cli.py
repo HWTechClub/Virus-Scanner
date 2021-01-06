@@ -6,9 +6,9 @@ Parameters:
              |_ file name to scan 
              |_ URL to scan 
 '''
-
+ 
 import click
-
+ 
 # Importing file from different folders 
 import sys
 from main import *
@@ -26,47 +26,50 @@ if (path.isfile("../config.yaml")!= True):
     f.write("Virus_Total_API_key:" + virusscankey + "\n")
     f.write("URL_Scan_IO_API_key: " + urlscankey + "\n")
     f.close()
-
+ 
 from config import *
-
+ 
 # Virus Total file and url
 #sys.path.append('../VirusTotal_API')
 #from VirusTotal_API_File import *
 #from VirusTotal_API_URL import *
-
+import main as m
 sys.path.append('../')
 import Meta_Defender.MetaDefenderMain as meta
 import VirusTotal_API.VirusTotal_API_File as vfile
 import VirusTotal_API.VirusTotal_API_URL as vurl
-
+ 
 @click.group()
 def main():
     pass
-
+ 
 @main.command()
-
+ 
 @click.option('--VirusTotalFile', '-VTF', help = 'Scan a file using the VirusTotal API')
 @click.option('--VirusTotalURL', '-VTU', help = 'Scan a website using the VirusTotal API')
 @click.option('--MetaDefender', '-M', help= 'Scan a file using the MetaDefender API' )
-def main(virustotalfile,virustotalurl,metadefender):
+@click.option('-i' , help= 'Opens in interactive command line mode')
+def main(virustotalfile,virustotalurl,metadefender,interactive):
     """This is a CLI application to scan a file or a website using multiple scanners to check for any form of malware"""
     if virustotalfile: 
        '''
        Parameters (<file to scan>,<virus total api key>)
        '''
-       vfile.scanFile(virustotalfile,Virus_Total_API_key())
+       vfile.ScanFile(virustotalfile,Virus_Total_API_key())
     
     elif virustotalurl:
         '''
         Parameters (<url to scan>,<virus total api key>)
         '''
-        vurl.scanURL(virustotalurl,Virus_Total_API_key())
+        vurl.ScanURL(virustotalurl,Virus_Total_API_key())
     elif metadefender:
         meta.scanFile(metadefender,Meta_Defender_API_key())
+    elif interactive:
+        m.mainfile()
     else:                                                                                          #shows help options if no options are input
         ctx = click.get_current_context()
         click.echo(ctx.get_help())
     
-
+ 
 if __name__ == "__main__":
     main()
