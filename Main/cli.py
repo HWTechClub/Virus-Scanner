@@ -46,8 +46,8 @@ def main():
 @click.option('--VirusTotalFile', '-VTF', help = 'Scan a file using the VirusTotal API')
 @click.option('--VirusTotalURL', '-VTU', help = 'Scan a website using the VirusTotal API')
 @click.option('--MetaDefender', '-M', help= 'Scan a file using the MetaDefender API' )
-#@click.option('-i' , help= 'Opens in interactive command line mode')
-def main(virustotalfile,virustotalurl,metadefender):
+@click.option('-i', is_flag=True, help= 'Opens in interactive command line mode')
+def main(virustotalfile,virustotalurl,metadefender,i):
     """This is a CLI application to scan a file or a website using multiple scanners to check for any form of malware"""
     if virustotalfile: 
        '''
@@ -60,14 +60,16 @@ def main(virustotalfile,virustotalurl,metadefender):
         Parameters (<url to scan>,<virus total api key>)
         '''
         vurl.ScanURL(virustotalurl,Virus_Total_API_key())
+    
     elif metadefender:
         meta.scanFile(metadefender,Meta_Defender_API_key())
-   #elif interactive:
-    #    m.mainfile()
+    
+    elif i:
+        m.mainfile()
     else:                                                                                          #shows help options if no options are input
         ctx = click.get_current_context()
         click.echo(ctx.get_help())
-    
- 
+
+
 if __name__ == "__main__":
     main()
