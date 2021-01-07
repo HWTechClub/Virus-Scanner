@@ -6,7 +6,7 @@ This program uses the MetaDegfender API to scan viruses.
 import requests
 import json
 import time
-
+import traceback
 '''
 Parameters (<file to scan>,<virus total api key>)
 '''
@@ -46,7 +46,7 @@ def scanFile(filePath,Meta_Defender_API_key,verbose):
 
 			else:
 				scanning_threats = response.json()["scan_results"]["scan_details"]
-
+				print (response.json())
 				if (response.json()["scan_results"]["scan_all_result_a"]!= 'No Threat Detected'):
 					for obj in scanning_threats:
 						if(scanning_threats[obj]["threat_found"] != ""):
@@ -59,8 +59,8 @@ def scanFile(filePath,Meta_Defender_API_key,verbose):
 	except FileNotFoundError:
 		print("This file does not exist. Please check the path and try again")
 	except:
-		print("We ran into some errors. Please try again in a while")
-	
+		#print("We ran into some errors. Please try again in a while")
+		traceback.print_exc()
 
 
 
