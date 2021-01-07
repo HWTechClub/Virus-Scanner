@@ -10,7 +10,7 @@ import time
 '''
 Parameters (<file to scan>,<virus total api key>)
 '''
-def scanFile(filePath,Meta_Defender_API_key):
+def scanFile(filePath,Meta_Defender_API_key,verbose):
 	try:
 		binFile = open(filePath, 'rb')
 		

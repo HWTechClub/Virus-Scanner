@@ -2,7 +2,7 @@
 The main file that the user runs to scan files and sites for viruses
 '''
 
-def mainfile():
+def mainfile(verbose):
 	import sys
 	import os
 
@@ -40,19 +40,19 @@ def mainfile():
 		if choice==1 :
 			from Meta_Defender.MetaDefenderMain import scanFile
 			filepath = input("Please enter the path of the file to scan: ")
-			scanFile(filepath,config.Meta_Defender_API_key())
+			scanFile(filepath,config.Meta_Defender_API_key(),verbose)
 			continue
         
 		elif choice==2 :
 			from VirusTotal_API.VirusTotal_API_File import ScanFile
 			filepath = input("Please enter the path of the file to scan: ")
-			ScanFile(filepath,config.Virus_Total_API_key)
+			ScanFile(filepath,config.Virus_Total_API_key(),verbose)
 			continue
 
 		elif choice==3:
 			from VirusTotal_API.VirusTotal_API_URL import ScanURL
 			url = input("Please enter the URL of the site to scan: ")
-			ScanURL(url,config.Virus_Total_API_key)
+			ScanURL(url,config.Virus_Total_API_key(),verbose)
 			continue
 
 		elif choice==4:
