@@ -17,8 +17,10 @@ Virus_Total_API_key: <api_key>
 
 
 ## Running the program
-
-python3 ./Main/cli.py
+```
+cd Main/
+python3 cli.py
+```
 
 This is the main program, main.py is not to be used directly by the user.
 
