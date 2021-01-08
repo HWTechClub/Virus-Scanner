@@ -31,9 +31,9 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 
 		status = True
 
-		while status:
+		while status:			# true if we are waiting for the report
 
-			if (reportResp.json().get("response_code") == -2):
+			if (reportResp.json().get("response_code") == -2):				# check response code
 				reportResp = requests.get(reportUrl, params=reportParams)
 				time.sleep(3)
 
@@ -41,20 +41,28 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 				finalReport = reportResp.json()
 				finalScans = finalReport["scans"]		# get scans from report
 
-				if (verbose):
+				if (verbose):			# show all scanners
 					print ("Number of scanners which detected viruses: " + str(finalReport["positives"]))
+
 					for scanner in finalScans:
 						print ("Result of scanner: " + scanner + "\n")
 						print (finalScans[scanner])
+
 					print ("Result : \n")
+
 					if (finalReport["positives"] == 0):
 						print ("This file is safe")
+
 					else:
 						print("This file may contain malware. Proceed at your own risk")
-				else:
+
+				else:		# regular scan
+
 					if (finalReport.get('positives') == 0):		# check if file has been flagged
 						print("The file is safe!\n\n")
+
 					else:
+
 						for scan in finalScans:			# for each scan
 
 							if (finalScans[scan].get('detected') == True):		# check if antivirus flagged file
@@ -62,10 +70,13 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 								print(scan + " has flagged this as malicious!")	
 								print(finalScans[scan].get('result'))
 								print("\n\n")
+
 				status =  False
 				print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
+
 	except FileNotFoundError:
 		print("This file does not exist. Please check the path and try again")
+
 	except:
 		#print("We ran into some errors. Please try again in a while")
 		traceback.print_exc()
