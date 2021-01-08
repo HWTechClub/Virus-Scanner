@@ -25,6 +25,8 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 		reportUrl = 'https://www.virustotal.com/vtapi/v2/file/report'
 
 		reportParams = {'apikey': Virus_Total_API_key, 'resource': scanID}		# use scanID to get file report
+		time.sleep(2)								# give site breathing space, fixes simplejson error
+
 		reportResp = requests.get(reportUrl, params=reportParams)
 
 		status = True
@@ -48,7 +50,7 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 					if (finalReport["positives"] == 0):
 						print ("This file is safe")
 					else:
-						print("This site may contain malware. Proceed at your own risk")
+						print("This file may contain malware. Proceed at your own risk")
 				else:
 					if (finalReport.get('positives') == 0):		# check if file has been flagged
 						print("The file is safe!\n\n")
@@ -65,5 +67,5 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 	except FileNotFoundError:
 		print("This file does not exist. Please check the path and try again")
 	except:
-		print("We ran into some errors. Please try again in a while")
-		#traceback.print_exc()
+		#print("We ran into some errors. Please try again in a while")
+		traceback.print_exc()

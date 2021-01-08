@@ -31,7 +31,7 @@ def mainfile(verbose):
 		#Option menu for the users
       
 		print (
-			"\n1.Meta defender" +"\n"+"2.virus total file"+"\n"+"3.virus total url"+"\n"+"4.Quit"
+			"\n1.Meta defender File Scan" +"\n"+"2.Virus Total File Scan"+"\n"+"3.Virus Total Url Scan"+"\n"+"4.Quit"
 		)
 
 
