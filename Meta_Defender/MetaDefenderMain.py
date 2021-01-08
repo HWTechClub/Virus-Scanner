@@ -53,27 +53,30 @@ def scanFile(filePath,Meta_Defender_API_key,verbose):
 
 					for obj in scanning_threats:
 
-						if(scanning_threats[obj]["threat_found"] != ""):
+						if(scanning_threats[obj]["threat_found"] != ""):	# all scanners that detect malicious code
 							print(obj + "has reported an error.")
 							print(scanning_threats[obj])
 							print("\n")
 
-						else:
+						else:												# scanners finding the file safe
 							print(obj + "has reported the file as safe.")
 							print(scanning_threats[obj])
 							print("\n")
 
 				else:	
 
-					if (response.json()["scan_results"]["scan_all_result_a"]!= 'No Threat Detected'):
+					if (response.json()["scan_results"]["scan_all_result_a"]!= 'No Threat Detected'):	# check if threat found
+
 						for obj in scanning_threats:
-							if(scanning_threats[obj]["threat_found"] != ""):
+
+							if(scanning_threats[obj]["threat_found"] != ""):	# all scanners where threat found
 								print(obj + "has reported an error.")
 								print(scanning_threats[obj])
 					else:
 						print("No threat has been detected.")
 
-				status = False
+				status = False	# break loop
+
 	except FileNotFoundError:
 		print("This file does not exist. Please check the path and try again")
 	except:

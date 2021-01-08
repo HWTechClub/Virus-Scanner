@@ -44,13 +44,13 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 				if (verbose):			# show all scanners
 					print ("Number of scanners which detected viruses: " + str(finalReport["positives"]))
 
-					for scanner in finalScans:
+					for scanner in finalScans:					# show all scanners
 						print ("Result of scanner: " + scanner + "\n")
 						print (finalScans[scanner])
 
 					print ("Result : \n")
 
-					if (finalReport["positives"] == 0):
+					if (finalReport["positives"] == 0):	# if no threat found
 						print ("This file is safe")
 
 					else:
@@ -71,7 +71,7 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 								print(finalScans[scan].get('result'))
 								print("\n\n")
 
-				status =  False
+				status =  False	# break loop				
 				print("For a detailed analysis visit:\n" + finalReport.get('permalink') + "\n\n")
 
 	except FileNotFoundError:
