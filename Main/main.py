@@ -29,36 +29,38 @@ def mainfile(verbose):
 
 	while flag:
 		#Option menu for the users
-      
-		print (
-			"\n1.Meta defender File Scan" +"\n"+"2.Virus Total File Scan"+"\n"+"3.Virus Total Url Scan"+"\n"+"4.Quit"
-		)
+			
+			print (
+				"\n1.Meta defender File Scan" +"\n"+"2.Virus Total File Scan"+"\n"+"3.Virus Total Url Scan"+"\n"+"4.Quit"
+			)
 
+		try:
+			choice =int(input("\nEnter the choice: "))
 
-		choice =int(input("\nEnter the choice: "))
+			if choice==1 :
+				from Meta_Defender.MetaDefenderMain import scanFile
+				filepath = input("Please enter the path of the file to scan: ")
+				scanFile(filepath,config.Meta_Defender_API_key(),verbose)
+				continue
+			
+			elif choice==2 :
+				from VirusTotal_API.VirusTotal_API_File import ScanFile
+				filepath = input("Please enter the path of the file to scan: ")
+				ScanFile(filepath,config.Virus_Total_API_key(),verbose)
+				continue
 
-		if choice==1 :
-			from Meta_Defender.MetaDefenderMain import scanFile
-			filepath = input("Please enter the path of the file to scan: ")
-			scanFile(filepath,config.Meta_Defender_API_key(),verbose)
-			continue
-        
-		elif choice==2 :
-			from VirusTotal_API.VirusTotal_API_File import ScanFile
-			filepath = input("Please enter the path of the file to scan: ")
-			ScanFile(filepath,config.Virus_Total_API_key(),verbose)
-			continue
+			elif choice==3:
+				from VirusTotal_API.VirusTotal_API_URL import ScanURL
+				url = input("Please enter the URL of the site to scan: ")
+				ScanURL(url,config.Virus_Total_API_key(),verbose)
+				continue
 
-		elif choice==3:
-			from VirusTotal_API.VirusTotal_API_URL import ScanURL
-			url = input("Please enter the URL of the site to scan: ")
-			ScanURL(url,config.Virus_Total_API_key(),verbose)
-			continue
-
-		elif choice==4:
-			print("Quitting!")
-			flag = False
-		else:
-			print("Invalid option")
-    
+			elif choice==4:
+				print("Quitting!")
+				flag = False
+			else:
+				print("Invalid option")
+		except ValueError:
+			print ("Please enter a valid option")
+		
 

@@ -43,7 +43,7 @@ def scanFile(filePath,Meta_Defender_API_key,verbose):
 			if (progress != 100):		# check if report ready
 				response = requests.request("GET", urlScan, headers=headers)
 				progress = response.json().get("scan_results").get("progress_percentage")
-				time.sleep(3)
+				time.sleep(10)
 
 			else:		# if report is ready
 
@@ -81,7 +81,7 @@ def scanFile(filePath,Meta_Defender_API_key,verbose):
 		print("This file does not exist. Please check the path and try again")
 	except:
 		print("We ran into some errors. Please try again in a while")
-		#traceback.print_exc()
+		#traceback.print_exc()						#for debugging
 	
 
 

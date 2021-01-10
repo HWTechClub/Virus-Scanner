@@ -25,7 +25,7 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 		reportUrl = 'https://www.virustotal.com/vtapi/v2/file/report'
 
 		reportParams = {'apikey': Virus_Total_API_key, 'resource': scanID}		# use scanID to get file report
-		time.sleep(2)								# give site breathing space, fixes simplejson error
+		time.sleep(10)								# give site breathing space, fixes simplejson error
 
 		reportResp = requests.get(reportUrl, params=reportParams)
 
@@ -45,10 +45,15 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 					print ("Number of scanners which detected viruses: " + str(finalReport["positives"]))
 
 					for scanner in finalScans:					# show all scanners
-						print ("Result of scanner: " + scanner + "\n")
-						print (finalScans[scanner])
+						print ("Scanner: 	" + scanner + "\n")
+						print ("Detected: 	" + str(finalScans[scanner]["detected"]))
+						if (str(finalScans[scanner]["result"]) == 'None'):
+							print ("Result:   	Clean file")
+						else:
+							print ("Result:   	" + str(finalScans[scanner]["result"]))
+						print("\n----------------------------------------------------------------------------\n")
 
-					print ("Result : \n")
+					print ("Final Result : \n")
 
 					if (finalReport["positives"] == 0):	# if no threat found
 						print ("This file is safe")
