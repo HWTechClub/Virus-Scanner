@@ -33,6 +33,7 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 
 		while status:			# true if we are waiting for the report
 
+			#print(reportResp) Test with requirements.txt file
 			if (reportResp.json().get("response_code") == -2):				# check response code
 				reportResp = requests.get(reportUrl, params=reportParams)
 				time.sleep(3)

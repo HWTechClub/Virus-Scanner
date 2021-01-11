@@ -11,7 +11,7 @@ def mainfile(verbose):
 	sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 	sys.path.append('../')
 	import config
-	if (os.path.isfile("config.yaml")!= True):
+	if os.path.isfile("config.yaml")!= True:
 		print("No config file")
 		f = open("config.yaml","w+")
 		metakey = input("Enter API key for MetaDefender: ")
@@ -30,9 +30,9 @@ def mainfile(verbose):
 	while flag:
 		#Option menu for the users
 			
-			print (
+		print (
 				"\n1.Meta defender File Scan" +"\n"+"2.Virus Total File Scan"+"\n"+"3.Virus Total Url Scan"+"\n"+"4.Quit"
-			)
+		)
 
 		try:
 			choice =int(input("\nEnter the choice: "))
