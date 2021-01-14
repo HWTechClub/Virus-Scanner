@@ -35,7 +35,7 @@ def ScanFile(filePath, Virus_Total_API_key,verbose):
 
 			if (reportResp.json().get("response_code") == -2):				# check response code
 				reportResp = requests.get(reportUrl, params=reportParams)
-				time.sleep(20)
+				time.sleep(20)			# 20 second sleep timer due to virus scanner free api only permitting 4 scans/min
 
 			else:			
 				finalReport = reportResp.json()
