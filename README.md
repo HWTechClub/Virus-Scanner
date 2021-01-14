@@ -31,3 +31,4 @@ This is the main program, main.py is not to be used directly by the user.
 
 ## TODO 
 1. Check if website exists when scanning URLs
+2. Look to make program pip installable
