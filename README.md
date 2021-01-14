@@ -1,4 +1,4 @@
-# Virus-Scanner
+# Virus-Scanner 1.0.0
 Open source virus scanner built using python and various APIs
 
 ## Install requirements 
