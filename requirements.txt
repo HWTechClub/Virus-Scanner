@@ -2,3 +2,4 @@ pyyaml
 tkintertable
 pyfiglet
 pypi-cli
+PyInquirer
