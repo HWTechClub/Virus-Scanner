@@ -1,66 +1,103 @@
-'''
+"""
 The main file that the user runs to scan files and sites for viruses
-'''
+"""
+
 
 def mainfile(verbose):
-	import sys
-	import os
+    import sys
+    import os
+    from PyInquirer import prompt
 
-	PACKAGE_PARENT = '..'
-	SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
-	sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
-	sys.path.append('../')
-	import config
-	if os.path.isfile("config.yaml")!= True:
-		print("No config file")
-		f = open("config.yaml","w+")
-		metakey = input("Enter API key for MetaDefender: ")
-		virusscankey = input ("Enter API key for VirusTotal: ")
-		f.write("Meta_Defender_API_key: " + metakey + "\n")
-		f.write("Virus_Total_API_key:" + virusscankey + "\n")
-		f.close()
-	#variable to help terminate the program
-	flag = True
+    PACKAGE_PARENT = ".."
+    SCRIPT_DIR = os.path.dirname(
+        os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__)))
+    )
+    sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+    sys.path.append("../")
+    import config
 
-	from pyfiglet import Figlet
-	f = Figlet(font='slant')
-	print (f.renderText('Virus Scanner'))
+    if os.path.isfile("config.yaml") != True:
+        print("No config file")
+        f = open("config.yaml", "w+")
+        metakey = input("Enter API key for MetaDefender: ")
+        virusscankey = input("Enter API key for VirusTotal: ")
+        f.write("Meta_Defender_API_key: " + metakey + "\n")
+        f.write("Virus_Total_API_key:" + virusscankey + "\n")
+        f.close()
+    # variable to help terminate the program
+    flag = True
 
+    from pyfiglet import Figlet
 
-	while flag:
-		#Option menu for the users
-			
-		print (
-				"\n1.Meta defender File Scan" +"\n"+"2.Virus Total File Scan"+"\n"+"3.Virus Total Url Scan"+"\n"+"4.Quit"
-		)
+    f = Figlet(font="slant")
 
-		try:
-			choice =int(input("\nEnter the choice: "))
+    choices = [
+        "Meta defender File Scan",
+        "Virus Total File Scan",
+        "Virus Total Url Scan",
+        "Exit",
+    ]
 
-			if choice==1 :
-				from Meta_Defender.MetaDefenderMain import scanFile
-				filepath = input("Please enter the path of the file to scan: ")
-				scanFile(filepath,config.Meta_Defender_API_key(),verbose)
-				continue
-			
-			elif choice==2 :
-				from VirusTotal_API.VirusTotal_API_File import ScanFile
-				filepath = input("Please enter the path of the file to scan: ")
-				ScanFile(filepath,config.Virus_Total_API_key(),verbose)
-				continue
+    questions = [
+        {
+            "type": "list",
+            "name": "choice",
+            "message": "What do you want to do?",
+            "default": 3,
+            "choices": choices,
+        }
+    ]
 
-			elif choice==3:
-				from VirusTotal_API.VirusTotal_API_URL import ScanURL
-				url = input("Please enter the URL of the site to scan: ")
-				ScanURL(url,config.Virus_Total_API_key(),verbose)
-				continue
+    def cls():
+        os.system("cls" if os.name == "nt" else "clear")
 
-			elif choice==4:
-				print("Quitting!")
-				flag = False
-			else:
-				print("Invalid option")
-		except ValueError:
-			print ("Please enter a valid option")
-		
+    cls()
+    print(f.renderText("Virus Scanner"))
+    while flag:
+        answers = prompt(questions)
+        choice = answers.get("choice")
+        try:
+            if choice == choices[0]:
+                cls()
+                print(f.renderText("Virus Scanner"))
 
+                from Meta_Defender.MetaDefenderMain import scanFile
+
+                filepath = input("Please enter the path of the file to scan: ")
+                scanFile(filepath, config.Meta_Defender_API_key(), verbose)
+
+                print("\n")
+                continue
+
+            elif choice == choices[1]:
+                cls()
+                print(f.renderText("Virus Scanner"))
+
+                from VirusTotal_API.VirusTotal_API_File import ScanFile
+
+                filepath = input("Please enter the path of the file to scan: ")
+                ScanFile(filepath, config.Virus_Total_API_key(), verbose)
+
+                print("\n")
+                continue
+
+            elif choice == choices[2]:
+                cls()
+                print(f.renderText("Virus Scanner"))
+
+                from VirusTotal_API.VirusTotal_API_URL import ScanURL
+
+                url = input("Please enter the URL of the site to scan: ")
+                ScanURL(url, config.Virus_Total_API_key(), verbose)
+
+                print("\n")
+                continue
+
+            elif choice == choices[3]:
+                print("Quitting!")
+                flag = False
+            else:
+                print("Invalid option")
+        except ValueError:
+            print("Please enter a valid option")
+            flag = False
