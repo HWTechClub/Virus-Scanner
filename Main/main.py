@@ -51,31 +51,46 @@ def mainfile(verbose):
     def cls():
         os.system("cls" if os.name == "nt" else "clear")
 
+    cls()
+    print(f.renderText("Virus Scanner"))
     while flag:
-        cls()
-        print(f.renderText("Virus Scanner"))
         answers = prompt(questions)
         choice = answers.get("choice")
         try:
             if choice == choices[0]:
+                cls()
+                print(f.renderText("Virus Scanner"))
+
                 from Meta_Defender.MetaDefenderMain import scanFile
 
                 filepath = input("Please enter the path of the file to scan: ")
                 scanFile(filepath, config.Meta_Defender_API_key(), verbose)
+
+                print("\n")
                 continue
 
             elif choice == choices[1]:
+                cls()
+                print(f.renderText("Virus Scanner"))
+
                 from VirusTotal_API.VirusTotal_API_File import ScanFile
 
                 filepath = input("Please enter the path of the file to scan: ")
                 ScanFile(filepath, config.Virus_Total_API_key(), verbose)
+
+                print("\n")
                 continue
 
             elif choice == choices[2]:
+                cls()
+                print(f.renderText("Virus Scanner"))
+
                 from VirusTotal_API.VirusTotal_API_URL import ScanURL
 
                 url = input("Please enter the URL of the site to scan: ")
                 ScanURL(url, config.Virus_Total_API_key(), verbose)
+
+                print("\n")
                 continue
 
             elif choice == choices[3]:
