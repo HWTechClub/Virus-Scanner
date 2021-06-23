@@ -15,30 +15,35 @@ import sys
 import os
 from os import path
 import platform
+import virus_scanner as vs
 
 # Config file
-# sys.path.append('../')
+if platform.system() == "Windows":
+    config_path = os.path.dirname(vs.__file__) + "\\config.yaml"
+else:
+    config_path = os.path.dirname(vs.__file__) + "/config.yaml"
+
 # checks if user has created a config file. If no config is present, it prompts the user for the API keys
-if path.isfile("config.yaml") != True:
+if path.isfile(config_path) != True:
     print("No config file")
-    f = open("config.yaml", "w+")
+    f = open(config_path, "w+")
     metakey = input("Enter API key for MetaDefender: ")
     virusscankey = input("Enter API key for VirusTotal: ")
     f.write("Meta_Defender_API_key: " + metakey + "\n")
-    f.write("Virus_Total_API_key:" + virusscankey + "\n")
+    f.write("Virus_Total_API_key: " + virusscankey + "\n")
     f.close()
 
-from config import *
+from virus_scanner.vscan_config import *
 
 # Import the interactive main file from the Main directory
-import Main.main as m
+import virus_scanner.Main.main as m
 
 # Import the metadefender file
-import Meta_Defender.MetaDefenderMain as meta
+import virus_scanner.Meta_Defender.MetaDefenderMain as meta
 
 # Import the VirusTotal files
-import VirusTotal_API.VirusTotal_API_File as vfile
-import VirusTotal_API.VirusTotal_API_URL as vurl
+import virus_scanner.VirusTotal_API.VirusTotal_API_File as vfile
+import virus_scanner.VirusTotal_API.VirusTotal_API_URL as vurl
 
 
 @click.group()
@@ -81,9 +86,9 @@ def main(virustotalfile, virustotalurl, metadefender, i, e, v):
         m.mainfile(verbose)
     elif e:
         if platform.system() == "Windows":
-            os.system("notepad config.yaml")
+            os.system(f"notepad {config_path}")
         else:
-            os.system("nano config.yaml")
+            os.system(f"nano {config_path}")
     else:  # shows help options if no options are input
         ctx = click.get_current_context()
         click.echo(ctx.get_help())

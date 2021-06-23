@@ -16,12 +16,21 @@ def read_config():
 
 def Meta_Defender_API_key():
     data = read_config()
-    return data["Meta_Defender_API_key"]
+    try:
+       return data["Meta_Defender_API_key"]
+    except:
+        print("Error Meta Defender API key not found/invalid")
+        exit()
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------ Returns Virus Total API Key ---------------------------------------------------------
 
 def Virus_Total_API_key():
     data = read_config()
-    return data["Virus_Total_API_key"]
+    try:
+        return data["Virus_Total_API_key"]
+    except:
+        print("Error Virus Total API key not found/invalid")
+        exit()
+   
 
