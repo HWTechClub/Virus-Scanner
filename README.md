@@ -8,6 +8,18 @@ pip install -r requirements.txt
 pip3 install -r requirements.txt
 ```
 
+## Installing PIP project
+
+```
+pip3 install vscan
+```
+
+Run with
+
+```
+vscan
+```
+
 ## Create config file 
 Create a file called config.yaml and add the following information 
 ```
@@ -26,6 +38,7 @@ OR
 ```
 ./vscan
 ```
+
 
 This is the main program, main.py is not to be used directly by the user.
 

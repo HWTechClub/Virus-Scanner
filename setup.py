@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='vscan',
-     version='0.1',
+     version='1.0',
      author="HWU Sec Team",
      author_email="pranavc10@hotmail.com",
      description="A cli tool that uses APIs to scan malicious files & urls",
