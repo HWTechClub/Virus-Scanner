@@ -1,30 +1,33 @@
 # Virus-Scanner 1.0
 Open source virus scanner built using python and various APIs
 
-## Install requirements 
-```
-pip install -r requirements.txt
-//Or 
-pip3 install -r requirements.txt
-```
 
-## Installing PIP project
+
+# Installing PIP project
 
 ```
 pip3 install vscan
 ```
 
-Run with
+## Running the program
 
 ```
 vscan
 ```
 
-## Create config file 
-Create a file called config.yaml and add the following information 
+# Installing from github
+
+## Downloading
+
 ```
-Meta_Defender_API_key: <api_key>
-Virus_Total_API_key: <api_key>
+git clone https://github.com/HWTechClub/Virus-Scanner.git
+```
+
+## Install requirements 
+```
+pip install -r requirements.txt
+# OR 
+pip3 install -r requirements.txt
 ```
 
 
@@ -44,4 +47,3 @@ This is the main program, main.py is not to be used directly by the user.
 
 ## TODO 
 1. Check if website exists when scanning URLs
-2. Look to make program pip installable
